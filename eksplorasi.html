@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksplorasi - Kita Beragam, Tetapi Tetap Satu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🇮🇩 Bhinneka Tunggal Ika</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="eksplorasi.html" class="active">Eksplorasi (34 Provinsi)</a></li>
+            <li><a href="permainan.html">Game Mencocokkan</a></li>
+            <li><a href="roda.html">Roda Budaya</a></li>
+        </ul>
+    </nav>
+
+    <section class="section exploration fade-in" style="min-height: 100vh;">
+        <h2 class="section-title">Galeri 34 Provinsi di Indonesia</h2>
+        <p style="margin-bottom: 2rem; font-size: 1.2rem;">Klik kartu untuk melihat nama baju dan rumah adatnya!</p>
+        
+        <!-- Container for dynamically generated 34 cards -->
+        <div id="dynamic-cards-container" class="card-container" style="gap: 2rem;">
+            <!-- Cards injected by app.js here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>Kebanggaan menjadi Anak Indonesia 🇮🇩</p>
+    </footer>
+
+    <!-- Load data first, then app -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

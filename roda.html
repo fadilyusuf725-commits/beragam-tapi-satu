@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roda Budaya - Kita Beragam, Tetapi Tetap Satu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Quiz Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: translateY(-20px);
+            transition: transform 0.3s;
+        }
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+        .modal-title { font-family: 'Fredoka One'; color: var(--primary); font-size: 2rem; margin-bottom: 1rem; }
+        .modal-quiz { font-size: 1.2rem; margin-bottom: 1.5rem; font-weight: bold; }
+        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .btn-option {
+            background: var(--bg-color); border: 2px solid var(--secondary);
+            padding: 10px; border-radius: 10px; font-size: 1.1rem;
+            cursor: pointer; transition: background 0.2s;
+            font-family: 'Nunito'; font-weight: bold;
+        }
+        .btn-option:hover { background: var(--secondary); color: white; }
+        .btn-option.correct { background: #32CD32; color: white; border-color: #32CD32; }
+        .btn-option.wrong { background: #FF6B6B; color: white; border-color: #FF6B6B; }
+        
+        .wheel {
+            background: conic-gradient(
+                #FF6B6B 0deg 40deg,
+                #4ECDC4 40deg 80deg,
+                #FFE66D 80deg 120deg,
+                #FF9F43 120deg 160deg,
+                #54A0FF 160deg 200deg,
+                #A29BFE 200deg 240deg,
+                #FF6B6B 240deg 280deg,
+                #4ECDC4 280deg 320deg,
+                #FFE66D 320deg 360deg
+            );
+        }
+        /* 9 Segments positioning roughly */
+        .wheel-segment { width: 50%; height: 50%; position: absolute; transform-origin: 0 100%; top: 0; right: 0;}
+        .seg-1 { transform: rotate(20deg) translate(20px, -10px); }
+        .seg-2 { transform: rotate(60deg) translate(20px, -10px); }
+        .seg-3 { transform: rotate(100deg) translate(20px, -10px); }
+        .seg-4 { transform: rotate(140deg) translate(20px, -10px); }
+        .seg-5 { transform: rotate(180deg) translate(20px, -10px); }
+        .seg-6 { transform: rotate(220deg) translate(20px, -10px); }
+        .seg-7 { transform: rotate(260deg) translate(20px, -10px); }
+        .seg-8 { transform: rotate(300deg) translate(20px, -10px); }
+        .seg-9 { transform: rotate(340deg) translate(20px, -10px); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🇮🇩 Bhinneka Tunggal Ika</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="eksplorasi.html">Eksplorasi (34 Provinsi)</a></li>
+            <li><a href="permainan.html">Game Mencocokkan</a></li>
+            <li><a href="roda.html" class="active">Roda Budaya</a></li>
+        </ul>
+    </nav>
+
+    <section class="section wheel-section fade-in" style="min-height: 100vh;">
+        <h2 class="section-title">Putar Roda & Jawab Kuisnya!</h2>
+        <p style="margin-bottom: 2rem;">Roda akan berhenti di sebuah budaya, dan kamu harus menjawab pertanyaan kuisnya.</p>
+        
+        <div class="wheel-container">
+            <div class="pointer">▼</div>
+            <div class="wheel" id="spin-wheel">
+                <!-- Segments will be injected by app.js based on data.js -->
+            </div>
+        </div>
+        <button id="spin-btn" class="btn-primary" style="margin-top: 30px;">Putar Roda!</button>
+    </section>
+
+    <!-- Quiz Modal -->
+    <div class="modal-overlay" id="quiz-modal">
+        <div class="modal-box">
+            <img id="quiz-image" src="" alt="Budaya" style="width: 120px; height: 120px; object-fit: contain; margin: 0 auto 1rem; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.15)); display: block;">
+            <h2 class="modal-title" id="quiz-title">Budaya Sunda</h2>
+            <p class="modal-quiz" id="quiz-question">Pertanyaan kuis muncul di sini?</p>
+            <div class="quiz-options" id="quiz-options-container">
+                <!-- Buttons injected by JS -->
+            </div>
+            <button id="close-modal" class="btn-primary" style="margin-top: 1.5rem; display: none;">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti"></canvas>
+
+    <footer>
+        <p>Kebanggaan menjadi Anak Indonesia 🇮🇩</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

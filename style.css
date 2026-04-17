@@ -1,0 +1,477 @@
+:root {
+    --primary: #FF6B6B;
+    --secondary: #4ECDC4;
+    --accent: #FFE66D;
+    --bg-color: #F7FFF7;
+    --text-color: #2C3E50;
+    --white: #ffffff;
+    --font-heading: 'Fredoka One', cursive;
+    --font-body: 'Nunito', sans-serif;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, .logo {
+    font-family: var(--font-heading);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: var(--primary);
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5rem 5%;
+    min-height: 80vh;
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    flex: 1;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.highlight-text {
+    color: var(--primary);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    color: #444;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--white);
+    background-color: var(--primary);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: var(--font-heading);
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+
+.hero-image {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map-img {
+    width: 100%;
+    max-width: 600px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)) contrast(1.8) brightness(0.8);
+    mix-blend-mode: screen;
+}
+
+.pulse-anim {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Base Section Styling */
+.section {
+    padding: 4rem 5%;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+/* 3D Flip Cards */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 2px solid var(--white);
+    box-shadow: var(--shadow);
+}
+
+.flip-card-front img, .flip-card-back img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+.flip-card-front img[src^="data:"], .flip-card-back img[src^="data:"] {
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+}
+
+.flip-card-front img:not([src^="data:"]), .flip-card-back img:not([src^="data:"]) {
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)) contrast(1.6) brightness(1.15) saturate(1.2);
+    mix-blend-mode: multiply;
+}
+
+.flip-card-front h3, .flip-card-back h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+.flip-card-back p {
+    font-size: 1rem;
+    color: #555;
+    font-weight: 600;
+}
+
+.placeholder-kid {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+/* Drag & Drop Series */
+.game-section {
+    background: linear-gradient(to bottom, #F7FFF7, #e0f7fa);
+}
+
+.game-instruction {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.game-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.draggables, .dropzones {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 900px;
+}
+
+.drag-item {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    cursor: grab;
+    transition: transform 0.2s;
+}
+
+.drag-item[src^="data:"] {
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15));
+}
+
+.drag-item:not([src^="data:"]) {
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.15)) contrast(1.6) brightness(1.15) saturate(1.2);
+    mix-blend-mode: multiply;
+}
+
+.drag-item:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+.drag-item.hide {
+    display: none;
+}
+
+.drop-zone {
+    width: 150px;
+    height: 150px;
+    border: 3px dashed var(--secondary);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.drop-zone.hovered {
+    background: rgba(78, 205, 196, 0.3);
+    border-color: var(--primary);
+}
+
+.drop-zone.correct {
+    background: rgba(144, 238, 144, 0.5);
+    border: 3px solid #32CD32;
+}
+
+.drop-zone img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    position: absolute;
+    z-index: 5;
+}
+
+.feedback-msg {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    color: var(--primary);
+    animation: bounce 1s infinite alternate;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Spinner Wheel */
+.wheel-section {
+    position: relative;
+}
+
+.wheel-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.pointer {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    color: var(--primary);
+    z-index: 10;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: transform 4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Simple CSS pie chart hack for wheel */
+    background: conic-gradient(
+        #FF6B6B 0deg 60deg,
+        #4ECDC4 60deg 120deg,
+        #FFE66D 120deg 180deg,
+        #FF9F43 180deg 240deg,
+        #54A0FF 240deg 300deg,
+        #A29BFE 300deg 360deg
+    );
+}
+
+.wheel-segment {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 0;
+    right: 0;
+    transform-origin: 0% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-family: var(--font-heading);
+    color: white;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Positioning text for conic gradient (simplified approach) */
+.segment-1 { transform: rotate(30deg) translate(20px, -20px); }
+.segment-2 { transform: rotate(90deg) translate(20px, -20px); }
+.segment-3 { transform: rotate(150deg) translate(20px, -20px); }
+.segment-4 { transform: rotate(210deg) translate(20px, -20px); }
+.segment-5 { transform: rotate(270deg) translate(20px, -20px); }
+.segment-6 { transform: rotate(330deg) translate(20px, -20px); }
+
+
+.wheel-result-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wheel-result-box h3 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--glass-bg);
+    color: var(--text-color);
+    font-weight: bold;
+    border-top: 2px solid var(--glass-border);
+}
+
+#confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Animations added via JS */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s, transform 1s;
+}
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
