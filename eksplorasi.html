@@ -3,36 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eksplorasi - Kita Beragam, Tetapi Tetap Satu</title>
+    <title>Eksplorasi 34 Provinsi - Kita Beragam, Tetapi Tetap Satu</title>
+    <meta name="description" content="Jelajahi rumah adat dan pakaian tradisional dari 34 Provinsi di Indonesia melalui kartu interaktif 3D.">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .exploration { background: linear-gradient(180deg, #f0faff 0%, var(--bg-color) 100%); }
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .filter-btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            border: 2px solid var(--secondary);
+            background: white;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">🇮🇩 Bhinneka Tunggal Ika</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="eksplorasi.html" class="active">Eksplorasi (34 Provinsi)</a></li>
-            <li><a href="permainan.html">Game Mencocokkan</a></li>
-            <li><a href="roda.html">Roda Budaya</a></li>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Buka Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">🏠 Beranda</a></li>
+            <li><a href="eksplorasi.html" class="active">🗺️ 34 Provinsi</a></li>
+            <li><a href="permainan.html">🎮 Game</a></li>
+            <li><a href="roda.html">🎡 Roda Budaya</a></li>
         </ul>
     </nav>
+    <div class="nav-overlay" id="nav-overlay"></div>
 
-    <section class="section exploration fade-in" style="min-height: 100vh;">
-        <h2 class="section-title">Galeri 34 Provinsi di Indonesia</h2>
-        <p style="margin-bottom: 2rem; font-size: 1.2rem;">Klik kartu untuk melihat nama baju dan rumah adatnya!</p>
-        
-        <!-- Container for dynamically generated 34 cards -->
-        <div id="dynamic-cards-container" class="card-container" style="gap: 2rem;">
-            <!-- Cards injected by app.js here -->
+    <section class="section exploration fade-in">
+        <h2 class="section-title">🗺️ Jelajahi 34 Provinsi Indonesia</h2>
+        <p class="section-subtitle">Klik kartu untuk melihat rumah adat dan pakaian tradisionalnya!</p>
+        <div class="filter-bar" id="filter-bar">
+            <button class="filter-btn active" data-region="semua">🌏 Semua</button>
+            <button class="filter-btn" data-region="Sumatra">Sumatra</button>
+            <button class="filter-btn" data-region="Jawa">Jawa</button>
+            <button class="filter-btn" data-region="Bali & NTT">Bali & NTT</button>
+            <button class="filter-btn" data-region="Kalimantan">Kalimantan</button>
+            <button class="filter-btn" data-region="Sulawesi">Sulawesi</button>
+            <button class="filter-btn" data-region="Maluku & Papua">Maluku & Papua</button>
+        </div>
+        <div id="dynamic-cards-container" class="card-container">
+            <!-- Cards injected by app.js -->
         </div>
     </section>
 
     <footer>
-        <p>Kebanggaan menjadi Anak Indonesia 🇮🇩</p>
+        <p>✨ Kebanggaan menjadi Anak Indonesia 🇮🇩 ✨</p>
     </footer>
 
-    <!-- Load data first, then app -->
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>

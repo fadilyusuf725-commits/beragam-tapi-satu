@@ -4,121 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roda Budaya - Kita Beragam, Tetapi Tetap Satu</title>
+    <meta name="description" content="Putar Roda Budaya dan jawab kuis tentang kebudayaan Indonesia! Sunda, Jawa, Bali, Bugis, dan lebih banyak lagi.">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Quiz Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
+        .wheel-page-layout {
             display: flex;
+            flex-direction: column;
             align-items: center;
+            gap: 2rem;
+        }
+
+        @media (min-width: 900px) {
+            .wheel-page-layout {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 4rem;
+            }
+
+            .wheel-side {
+                flex: 0 0 420px;
+            }
+
+            .info-side {
+                flex: 1;
+                max-width: 420px;
+                text-align: left;
+            }
+        }
+
+        .spin-score {
+            display: flex;
             justify-content: center;
-            z-index: 2000;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
         }
-        .modal-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-        .modal-box {
+
+        .score-box {
             background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow);
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transform: translateY(-20px);
-            transition: transform 0.3s;
+            min-width: 100px;
         }
-        .modal-overlay.active .modal-box {
-            transform: translateY(0);
+
+        .score-label {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: 700;
+            text-transform: uppercase;
         }
-        .modal-title { font-family: 'Fredoka One'; color: var(--primary); font-size: 2rem; margin-bottom: 1rem; }
-        .modal-quiz { font-size: 1.2rem; margin-bottom: 1.5rem; font-weight: bold; }
-        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
-        .btn-option {
-            background: var(--bg-color); border: 2px solid var(--secondary);
-            padding: 10px; border-radius: 10px; font-size: 1.1rem;
-            cursor: pointer; transition: background 0.2s;
-            font-family: 'Nunito'; font-weight: bold;
+
+        .score-value {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--primary);
         }
-        .btn-option:hover { background: var(--secondary); color: white; }
-        .btn-option.correct { background: #32CD32; color: white; border-color: #32CD32; }
-        .btn-option.wrong { background: #FF6B6B; color: white; border-color: #FF6B6B; }
-        
-        .wheel {
-            background: conic-gradient(
-                #FF6B6B 0deg 40deg,
-                #4ECDC4 40deg 80deg,
-                #FFE66D 80deg 120deg,
-                #FF9F43 120deg 160deg,
-                #54A0FF 160deg 200deg,
-                #A29BFE 200deg 240deg,
-                #FF6B6B 240deg 280deg,
-                #4ECDC4 280deg 320deg,
-                #FFE66D 320deg 360deg
-            );
+
+        .result-culture-box {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-top: 1.5rem;
+            animation: popIn 0.4s ease;
+            text-align: center;
         }
-        /* 9 Segments positioning roughly */
-        .wheel-segment { width: 50%; height: 50%; position: absolute; transform-origin: 0 100%; top: 0; right: 0;}
-        .seg-1 { transform: rotate(20deg) translate(20px, -10px); }
-        .seg-2 { transform: rotate(60deg) translate(20px, -10px); }
-        .seg-3 { transform: rotate(100deg) translate(20px, -10px); }
-        .seg-4 { transform: rotate(140deg) translate(20px, -10px); }
-        .seg-5 { transform: rotate(180deg) translate(20px, -10px); }
-        .seg-6 { transform: rotate(220deg) translate(20px, -10px); }
-        .seg-7 { transform: rotate(260deg) translate(20px, -10px); }
-        .seg-8 { transform: rotate(300deg) translate(20px, -10px); }
-        .seg-9 { transform: rotate(340deg) translate(20px, -10px); }
+
+        .result-culture-box h3 {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .result-culture-box p {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">🇮🇩 Bhinneka Tunggal Ika</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="eksplorasi.html">Eksplorasi (34 Provinsi)</a></li>
-            <li><a href="permainan.html">Game Mencocokkan</a></li>
-            <li><a href="roda.html" class="active">Roda Budaya</a></li>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Buka Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">🏠 Beranda</a></li>
+            <li><a href="eksplorasi.html">🗺️ 34 Provinsi</a></li>
+            <li><a href="permainan.html">🎮 Game</a></li>
+            <li><a href="roda.html" class="active">🎡 Roda Budaya</a></li>
         </ul>
     </nav>
+    <div class="nav-overlay" id="nav-overlay"></div>
 
-    <section class="section wheel-section fade-in" style="min-height: 100vh;">
-        <h2 class="section-title">Putar Roda & Jawab Kuisnya!</h2>
-        <p style="margin-bottom: 2rem;">Roda akan berhenti di sebuah budaya, dan kamu harus menjawab pertanyaan kuisnya.</p>
-        
-        <div class="wheel-container">
-            <div class="pointer">▼</div>
-            <div class="wheel" id="spin-wheel">
-                <!-- Segments will be injected by app.js based on data.js -->
+    <section class="section wheel-section fade-in" style="min-height: calc(100vh - 70px);">
+        <h2 class="section-title">🎡 Putar Roda & Jawab Kuis!</h2>
+        <p class="section-subtitle">Roda berhenti → Kuis Budaya muncul!</p>
+
+        <!-- Scoreboard -->
+        <div class="spin-score">
+            <div class="score-box">
+                <div class="score-label">✅ Benar</div>
+                <div class="score-value" id="score-correct">0</div>
+            </div>
+            <div class="score-box">
+                <div class="score-label">❌ Salah</div>
+                <div class="score-value" id="score-wrong">0</div>
+            </div>
+            <div class="score-box">
+                <div class="score-label">🎡 Putaran</div>
+                <div class="score-value" id="score-spins">0</div>
             </div>
         </div>
-        <button id="spin-btn" class="btn-primary" style="margin-top: 30px;">Putar Roda!</button>
+
+        <div class="wheel-page-layout">
+            <div class="wheel-side">
+                <div class="wheel-container">
+                    <div class="pointer">▼</div>
+                    <div class="wheel" id="spin-wheel">
+                        <!-- Segments injected by app.js -->
+                    </div>
+                    <div class="wheel-center"></div>
+                </div>
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button id="spin-btn" class="btn-primary" style="font-size: 1.2rem; padding: 1rem 2.5rem;">
+                        🎡 Putar Roda!
+                    </button>
+                </div>
+            </div>
+            <div class="info-side" id="info-side" style="display: none;">
+                <!-- Filled by JS after spin -->
+            </div>
+        </div>
     </section>
 
     <!-- Quiz Modal -->
     <div class="modal-overlay" id="quiz-modal">
         <div class="modal-box">
-            <img id="quiz-image" src="" alt="Budaya" style="width: 120px; height: 120px; object-fit: contain; margin: 0 auto 1rem; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.15)); display: block;">
+            <img id="quiz-image" src="" alt="Budaya" 
+                 style="width: 100px; height: 100px; object-fit: contain; margin: 0 auto 1rem; display: block; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.15));">
             <h2 class="modal-title" id="quiz-title">Budaya Sunda</h2>
-            <p class="modal-quiz" id="quiz-question">Pertanyaan kuis muncul di sini?</p>
-            <div class="quiz-options" id="quiz-options-container">
-                <!-- Buttons injected by JS -->
-            </div>
-            <button id="close-modal" class="btn-primary" style="margin-top: 1.5rem; display: none;">Tutup</button>
+            <p class="modal-quiz" id="quiz-question"></p>
+            <div class="quiz-options" id="quiz-options-container"></div>
+            <div id="quiz-feedback" style="margin-top: 1rem; font-size: 1.1rem; font-weight: bold; display: none;"></div>
+            <button id="close-modal" class="btn-primary" style="margin-top: 1.5rem; display: none; width: 100%;">
+                Lanjutkan Bermain →
+            </button>
         </div>
     </div>
 
-    <!-- Confetti Canvas -->
     <canvas id="confetti"></canvas>
 
     <footer>
-        <p>Kebanggaan menjadi Anak Indonesia 🇮🇩</p>
+        <p>✨ Kebanggaan menjadi Anak Indonesia 🇮🇩 ✨</p>
     </footer>
 
     <script src="data.js"></script>

@@ -3,45 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game - Kita Beragam, Tetapi Tetap Satu</title>
+    <title>Game Cocokkan - Kita Beragam, Tetapi Tetap Satu</title>
+    <meta name="description" content="Game interaktif mencocokkan rumah adat dengan daerah asalnya. Cocok untuk anak SD belajar budaya Indonesia!">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">🇮🇩 Bhinneka Tunggal Ika</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Beranda</a></li>
-            <li><a href="eksplorasi.html">Eksplorasi (34 Provinsi)</a></li>
-            <li><a href="permainan.html" class="active">Game Mencocokkan</a></li>
-            <li><a href="roda.html">Roda Budaya</a></li>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Buka Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">🏠 Beranda</a></li>
+            <li><a href="eksplorasi.html">🗺️ 34 Provinsi</a></li>
+            <li><a href="permainan.html" class="active">🎮 Game</a></li>
+            <li><a href="roda.html">🎡 Roda Budaya</a></li>
         </ul>
     </nav>
+    <div class="nav-overlay" id="nav-overlay"></div>
 
-    <section class="section game-section fade-in" style="min-height: 100vh;">
-        <h2 class="section-title">Game: Ayo Cocokkan Rumah Adat!</h2>
-        <p class="game-instruction">Tarik gambar (Drag) rumah adat ke kotak nama budaya yang benar.</p>
+    <section class="section game-section fade-in" style="min-height: calc(100vh - 70px);">
+        <h2 class="section-title">🎮 Game: Cocokkan Rumah Adat!</h2>
+        <p class="game-instruction">Tarik gambar rumah adat ke kotak nama daerah yang benar. <br>Di HP: tekan dan geser!</p>
         
         <div class="game-board">
-            <div class="draggables">
-                <img src="assets/rumah_jateng.png" alt="Joglo" id="drag-jawa" class="drag-item" draggable="true" data-target="jawa">
-                <img src="assets/rumah_papua.png" alt="Honai" id="drag-papua" class="drag-item" draggable="true" data-target="papua">
-                <img src="assets/rumah_sumbar.png" alt="Gadang" id="drag-sumatra" class="drag-item" draggable="true" data-target="sumatra">
+            <!-- Draggable items row -->
+            <div class="draggables" id="draggable-area">
+                <img src="assets/rumah_jateng.png" alt="Rumah Joglo" id="drag-jawa" 
+                     class="drag-item" draggable="true" data-target="jawa">
+                <img src="assets/rumah_papua.png" alt="Rumah Honai" id="drag-papua" 
+                     class="drag-item" draggable="true" data-target="papua">
+                <img src="assets/rumah_sumbar.png" alt="Rumah Gadang" id="drag-sumatra" 
+                     class="drag-item" draggable="true" data-target="sumatra">
             </div>
+            <!-- Drop zones row -->
             <div class="dropzones">
-                <div class="drop-zone target-jawa" data-id="jawa"><span>Pulau Jawa</span></div>
-                <div class="drop-zone target-papua" data-id="papua"><span>Pulau Papua</span></div>
-                <div class="drop-zone target-sumatra" data-id="sumatra"><span>Sumatra Barat</span></div>
+                <div class="drop-zone" data-id="jawa">
+                    <span>🏝️<br>Pulau Jawa</span>
+                </div>
+                <div class="drop-zone" data-id="papua">
+                    <span>🌿<br>Pulau Papua</span>
+                </div>
+                <div class="drop-zone" data-id="sumatra">
+                    <span>⛰️<br>Sumatra Barat</span>
+                </div>
             </div>
         </div>
-        <div id="game-feedback" class="feedback-msg hidden">Hebat! Kamu berhasil mencocokkannya! 🌟</div>
+
+        <div id="game-feedback" class="feedback-msg hidden">🌟 Hebat! Kamu berhasil mencocokkannya! 🎉</div>
+
+        <button id="reset-game" class="btn-secondary" style="margin-top: 2rem; display: none;">
+            🔄 Main Lagi
+        </button>
     </section>
 
-    <!-- Confetti Canvas -->
     <canvas id="confetti"></canvas>
 
     <footer>
-        <p>Kebanggaan menjadi Anak Indonesia 🇮🇩</p>
+        <p>✨ Kebanggaan menjadi Anak Indonesia 🇮🇩 ✨</p>
     </footer>
 
     <script src="app.js"></script>
