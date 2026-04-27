@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda - Kita Beragam, Tetapi Tetap Satu</title>
-    <meta name="description" content="Media pembelajaran interaktif budaya Indonesia untuk anak SD. Jelajahi 34 Provinsi, rumah adat, pakaian tradisional, dan kuis budaya seru!">
+    <meta name="description" content="Media pembelajaran interaktif budaya Indonesia untuk anak SD. Jelajahi 34 Provinsi, rumah adat, pakaian tradisional, dan identitas diri!">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,20 +16,20 @@
         </button>
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html" class="active">🏠 Beranda</a></li>
+            <li><a href="identitas.html">🪪 Identitasku</a></li>
             <li><a href="eksplorasi.html">🗺️ 34 Provinsi</a></li>
-            <li><a href="permainan.html">🎮 Game</a></li>
-            <li><a href="roda.html">🎡 Roda Budaya</a></li>
         </ul>
     </nav>
     <div class="nav-overlay" id="nav-overlay"></div>
 
+    <!-- HERO -->
     <section class="hero fade-in">
         <div class="hero-content">
             <h1>Kita Beragam,<br><span class="highlight-text">Tetapi Tetap Satu!</span></h1>
             <p>Jelajahi keindahan budaya dari 34 Provinsi di Indonesia. Dari Sumatra hingga Papua, kita adalah satu keluarga besar Indonesia!</p>
             <div class="btn-group">
-                <a href="eksplorasi.html" class="btn-primary">🌍 Eksplorasi Sekarang</a>
-                <a href="roda.html" class="btn-secondary">🎡 Main Roda Budaya</a>
+                <a href="identitas.html" class="btn-primary">🪪 Kenali Identitasmu</a>
+                <a href="eksplorasi.html" class="btn-secondary">🗺️ Jelajahi 34 Provinsi</a>
             </div>
         </div>
         <div class="hero-image">
@@ -37,32 +37,73 @@
         </div>
     </section>
 
-    <!-- Feature Cards -->
-    <section class="section fade-in" style="background: white; padding: 4rem 5%;">
-        <h2 class="section-title">Apa yang Bisa Kamu Lakukan?</h2>
-        <p class="section-subtitle">Pilih aktivitas belajar yang menyenangkan!</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
-            <a href="eksplorasi.html" style="text-decoration: none; color: inherit;">
-                <div class="feature-card" style="background: linear-gradient(135deg, #a8edea, #79e0d8); padding: 2rem; border-radius: 20px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🗺️</div>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.5rem; color: #1a6e6e;">Galeri 34 Provinsi</h3>
-                    <p style="color: #2a5a5a; font-weight: 600; font-size: 0.95rem;">Kenali rumah adat dan pakaian tradisional dari setiap provinsi Indonesia</p>
+    <!-- FEATURE CARDS -->
+    <section class="home-features">
+        <h2 class="section-title" style="color:#fff; text-shadow: 0 2px 8px rgba(0,0,0,0.15);">Apa yang Bisa Kamu Pelajari?</h2>
+        <p class="section-subtitle" style="color:rgba(255,255,255,0.9);">Pilih aktivitas belajar yang menyenangkan!</p>
+        <div class="home-cards-grid">
+            <a href="identitas.html" class="home-feature-link">
+                <div class="home-card hc-green">
+                    <div class="hc-icon">🪪</div>
+                    <h3>Mengenal Identitasku</h3>
+                    <p>Kenali identitas fisik &amp; nonfisik diri sendiri, keluarga, dan teman-temanmu!</p>
+                    <div class="hc-badge">TP 1–6</div>
                 </div>
             </a>
-            <a href="permainan.html" style="text-decoration: none; color: inherit;">
-                <div class="feature-card" style="background: linear-gradient(135deg, #fed6e3, #ffb3cc); padding: 2rem; border-radius: 20px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎮</div>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.5rem; color: #8b1a4a;">Game Cocokkan</h3>
-                    <p style="color: #6a1a3a; font-weight: 600; font-size: 0.95rem;">Seret dan cocokkan rumah adat ke pulau yang tepat dalam game seru ini</p>
+            <a href="eksplorasi.html" class="home-feature-link">
+                <div class="home-card hc-blue">
+                    <div class="hc-icon">🗺️</div>
+                    <h3>Jelajahi 34 Provinsi</h3>
+                    <p>Kenali rumah adat dan pakaian tradisional dari setiap provinsi Indonesia!</p>
+                    <div class="hc-badge">34 Kartu</div>
                 </div>
             </a>
-            <a href="roda.html" style="text-decoration: none; color: inherit;">
-                <div class="feature-card" style="background: linear-gradient(135deg, #ffeaa7, #fdcb6e); padding: 2rem; border-radius: 20px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎡</div>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.5rem; color: #7d5a00;">Roda Budaya</h3>
-                    <p style="color: #5a4200; font-weight: 600; font-size: 0.95rem;">Putar roda dan jawab pertanyaan kuis tentang budaya daerah yang keluar!</p>
-                </div>
-            </a>
+        </div>
+    </section>
+
+    <!-- FACT STRIP -->
+    <section class="fact-strip">
+        <div class="fact-item">
+            <span class="fact-num">34</span>
+            <span class="fact-label">Provinsi</span>
+        </div>
+        <div class="fact-divider"></div>
+        <div class="fact-item">
+            <span class="fact-num">300+</span>
+            <span class="fact-label">Suku Bangsa</span>
+        </div>
+        <div class="fact-divider"></div>
+        <div class="fact-item">
+            <span class="fact-num">700+</span>
+            <span class="fact-label">Bahasa Daerah</span>
+        </div>
+        <div class="fact-divider"></div>
+        <div class="fact-item">
+            <span class="fact-num">1</span>
+            <span class="fact-label">Bangsa Indonesia</span>
+        </div>
+    </section>
+
+    <!-- WHY SECTION -->
+    <section class="why-section">
+        <h2 class="section-title">🌈 Mengapa Keragaman Itu Indah?</h2>
+        <p class="section-subtitle">Indonesia adalah negara dengan keragaman terkaya di dunia!</p>
+        <div class="why-grid">
+            <div class="why-card" style="background: linear-gradient(135deg, #FF6B6B, #ff9a9e);">
+                <span style="font-size:2.5rem;">🤝</span>
+                <h3>Saling Menghormati</h3>
+                <p>Perbedaan mengajarkan kita untuk saling menghargai satu sama lain</p>
+            </div>
+            <div class="why-card" style="background: linear-gradient(135deg, #4ECDC4, #44a08d);">
+                <span style="font-size:2.5rem;">💪</span>
+                <h3>Lebih Kuat Bersama</h3>
+                <p>Bhinneka Tunggal Ika — berbeda-beda tetapi tetap satu!</p>
+            </div>
+            <div class="why-card" style="background: linear-gradient(135deg, #FFE66D, #f7971e);">
+                <span style="font-size:2.5rem;">🎨</span>
+                <h3>Budaya yang Kaya</h3>
+                <p>Setiap daerah punya keunikan yang membuat Indonesia istimewa</p>
+            </div>
         </div>
     </section>
 
@@ -71,11 +112,5 @@
     </footer>
 
     <script src="app.js"></script>
-    <style>
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.12);
-        }
-    </style>
 </body>
 </html>

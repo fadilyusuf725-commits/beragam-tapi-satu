@@ -39,9 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 obs.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
     faders.forEach(el => scrollObserver.observe(el));
+    // Also immediately appear anything already visible
+    faders.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) el.classList.add('appear');
+    });
 
     // ==================== 34 PROVINCE CARDS ====================
     const cardsContainer = document.getElementById('dynamic-cards-container');
@@ -60,24 +65,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.setAttribute('data-region', prov.region);
                 card.innerHTML = `
                     <div class="flip-card-inner">
-                        <div class="flip-card-front" style="background: linear-gradient(150deg, #f0faff 0%, #fff7f0 100%);">
-                            <span class="province-badge">${prov.region}</span>
+                        <div class="flip-card-front">
+                            <span class="province-badge" data-region="${prov.region}">${prov.region}</span>
                             <img src="assets/kid_${prov.id}.png"
                                  style="width:100%; height:170px; object-fit:contain; filter:drop-shadow(0 5px 15px rgba(0,0,0,0.1));"
                                  onerror="this.style.display='none'">
                             <h3>${prov.nama}</h3>
                             <p style="color:#555; font-size:0.9rem; font-weight:600;">Suku: ${prov.suku}</p>
-                            <p style="color:#888; font-size:0.8rem;">👗 <em>${prov.pakaian}</em></p>
-                            <p class="flip-hint">👆 Klik untuk lihat rumah adat</p>
+                            <p style="color:#888; font-size:0.8rem;">&#128247; <em>${prov.pakaian}</em></p>
+                            <p class="flip-hint">&#128070; Klik untuk lihat rumah adat</p>
                         </div>
                         <div class="flip-card-back">
-                            <span class="province-badge">${prov.region}</span>
+                            <span class="province-badge" data-region="${prov.region}">${prov.region}</span>
                             <img src="assets/rumah_${prov.id}.png"
                                  style="width:100%; height:160px; object-fit:contain; filter:drop-shadow(0 5px 15px rgba(0,0,0,0.1));"
                                  onerror="this.style.display='none'">
-                            <h3>🏠 ${prov.rumah}</h3>
+                            <h3>&#127968; ${prov.rumah}</h3>
                             <p>Rumah adat Suku <strong>${prov.suku}</strong> dari <strong>${prov.nama}</strong>.</p>
-                            <p class="flip-hint">👆 Klik untuk kembali</p>
+                            <p class="flip-hint">&#128070; Klik untuk kembali</p>
                         </div>
                     </div>
                 `;

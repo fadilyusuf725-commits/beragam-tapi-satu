@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mengenal Identitasku - Kita Beragam, Tetapi Tetap Satu</title>
+    <meta name="description" content="Belajar mengenal identitas diri, fisik dan nonfisik, keluarga, teman, dan menghargai perbedaan.">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== HERO IDENTITAS ===== */
+        .hero-identitas {
+            background: linear-gradient(135deg, #c3f584 0%, #a8edea 50%, #fed6e3 100%);
+            padding: 4rem 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-identitas::before {
+            content: '';
+            position: absolute;
+            top: -30%; left: -10%;
+            width: 120%; height: 160%;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.35) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-identitas h1 { font-size: clamp(2rem, 5vw, 3.5rem); color: #2C3E50; margin-bottom: 1rem; }
+        .hero-identitas p  { font-size: clamp(1rem, 2vw, 1.3rem); color: #444; max-width: 620px; margin: 0 auto 1.5rem; }
+
+        /* ===== TP BADGES ===== */
+        .tp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto 2rem;
+            text-align: left;
+        }
+
+        .tp-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255,255,255,0.9);
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tp-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+        .tp-num {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--primary);
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .tp-text { font-size: 0.9rem; font-weight: 700; color: var(--text-color); line-height: 1.5; }
+
+        /* ===== SECTION TABS ===== */
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.7rem 1.4rem;
+            border-radius: 50px;
+            border: 2px solid var(--secondary);
+            background: white;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(78,205,196,0.4);
+        }
+
+        .tab-panel { display: none; animation: fadeSlideIn 0.4s ease; }
+        .tab-panel.active { display: block; }
+
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== 1. KARTU IDENTITASKU ===== */
+        .id-builder {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        @media (max-width: 640px) { .id-builder { grid-template-columns: 1fr; } }
+
+        .id-preview {
+            background: linear-gradient(135deg, #fff9f0, #fff);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            border: 3px solid var(--accent);
+            position: sticky;
+            top: 90px;
+        }
+
+        .id-avatar {
+            font-size: 6rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .id-preview h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .id-preview .id-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), #a8edea);
+            color: white;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin: 0.2rem;
+        }
+
+        .id-tag.nonfisik {
+            background: linear-gradient(135deg, var(--primary), #ffa0a0);
+        }
+
+        .id-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+        .id-form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            color: var(--text-color);
+        }
+
+        .id-form-group label span {
+            font-size: 0.75rem;
+            background: var(--secondary);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            margin-left: 0.4rem;
+            vertical-align: middle;
+        }
+
+        .id-form-group label span.nf {
+            background: var(--primary);
+        }
+
+        .id-form-group input[type="text"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            background: white;
+        }
+
+        .id-form-group input[type="text"]:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .choice-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .choice-grid.has-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .choice-pill {
+            padding: 0.4rem 0.9rem;
+            border: 2px solid #ddd;
+            border-radius: 20px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            font-family: var(--font-body);
+        }
+
+        .choice-pill.img-choice {
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            border-radius: 12px;
+            height: 100%;
+        }
+
+        .choice-pill.img-choice img {
+            width: 100%;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.4rem;
+        }
+
+        .choice-pill.img-choice.contain-img img {
+            object-fit: contain;
+        }
+
+        .choice-pill.img-choice span {
+            font-size: 0.8rem;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .choice-pill:hover { border-color: var(--secondary); background: #f0fffe; transform: translateY(-2px); }
+        .choice-pill.selected { background: var(--secondary); color: white; border-color: var(--secondary); }
+        .choice-pill.selected.nf { background: var(--primary); border-color: var(--primary); }
+
+        /* ===== 2. FISIK vs NONFISIK SORT ===== */
+        .sort-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        @media (max-width: 540px) { .sort-area { grid-template-columns: 1fr; } }
+
+        .sort-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .sort-card {
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            border: 2px solid #ccc;
+            background: white;
+            cursor: grab;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.2s;
+            user-select: none;
+            touch-action: none;
+        }
+
+        .sort-card:hover { transform: scale(1.05); box-shadow: var(--shadow); }
+        .sort-card.placed { opacity: 0.35; cursor: default; pointer-events: none; }
+
+        .sort-bin {
+            border: 3px dashed #ccc;
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            min-height: 200px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .sort-bin.hovered {
+            border-color: var(--secondary);
+            background: rgba(78,205,196,0.07);
+        }
+
+        .sort-bin-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sort-bin-title .dot {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .sort-bin-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            min-height: 80px;
+        }
+
+        .sort-bin-item {
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+            animation: popIn 0.3s ease;
+        }
+
+        .sort-bin-item.fisik-item { background: var(--secondary); }
+        .sort-bin-item.nonfisik-item { background: var(--primary); }
+        .sort-bin-item.wrong-item {
+            background: #ffa07a;
+            animation: shake 0.5s ease, popIn 0.3s ease;
+        }
+
+        .sort-result {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .sort-result.good { background: #e8fae8; color: #1a6e1a; display: block; }
+        .sort-result.retry { background: #fee8e8; color: #8b1a1a; display: block; }
+
+        /* ===== 3. KELUARGA & TEMAN ===== */
+        .friend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .friend-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 1.3rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 2px solid transparent;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .friend-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .friend-avatar-img { 
+            width: 80px; height: 80px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            margin-bottom: 0.8rem; 
+            border: 3px solid #eee; 
+            display: inline-block; 
+            background: #f8f8f8;
+        }
+        .friend-name { font-family: var(--font-heading); font-size: 1.1rem; color: var(--primary); }
+        .friend-desc { font-size: 0.8rem; color: #777; margin-top: 0.3rem; font-weight: 600; }
+
+        .friend-detail-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .friend-detail-modal.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .friend-detail-box {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+
+        .friend-detail-modal.active .friend-detail-box { transform: scale(1); }
+
+        .friend-detail-box .big-avatar-img { 
+            width: 120px; height: 120px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            margin-bottom: 0.8rem; 
+            border: 4px solid var(--secondary); 
+            display: inline-block; 
+            background: #f8f8f8;
+            box-shadow: var(--shadow);
+        }
+
+        .identity-row {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .id-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .id-chip.fisik { background: #e0faf8; color: #1a7a74; border: 1.5px solid var(--secondary); }
+        .id-chip.nonfisik { background: #fee8e8; color: #8b1a1a; border: 1.5px solid var(--primary); }
+
+        /* ===== 4. MENGHARGAI PERBEDAAN QUIZ ===== */
+        .scenario-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            max-width: 620px;
+            margin: 0 auto 1.5rem;
+            box-shadow: var(--shadow);
+            text-align: left;
+        }
+
+        .scenario-emoji { font-size: 3rem; margin-bottom: 0.8rem; display: block; }
+
+        .scenario-question {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .scenario-options { display: flex; flex-direction: column; gap: 0.7rem; }
+
+        .scenario-btn {
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            background: var(--bg-color);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .scenario-btn:hover:not(:disabled) { border-color: var(--secondary); background: #f0fffe; }
+        .scenario-btn.correct { background: #e8fae8; border-color: #32CD32; color: #1a6e1a; }
+        .scenario-btn.wrong { background: #fee8e8; border-color: #FF6B6B; color: #8b1a1a; }
+
+        .scenario-feedback {
+            margin-top: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: none;
+        }
+
+        .scenario-feedback.show { display: block; }
+        .scenario-feedback.ok { background: #e8fae8; color: #1a6e1a; }
+        .scenario-feedback.no { background: #fee8e8; color: #8b1a1a; }
+
+        .scenario-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .progress-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .prog-dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .prog-dot.done  { background: var(--secondary); transform: scale(1.2); }
+        .prog-dot.wrong-dot { background: var(--primary); }
+        .prog-dot.current { border: 2px solid var(--secondary); background: white; transform: scale(1.2); }
+
+        .final-score-box {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            max-width: 420px;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            display: none;
+        }
+
+        .final-score-box h3 { font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .final-score-box .big-score { font-size: 4rem; font-family: var(--font-heading); color: var(--text-color); }
+
+        /* ===== BADGES ===== */
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            background: white;
+            border-radius: 16px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            width: 130px;
+            transition: transform 0.25s;
+        }
+
+        .badge:hover { transform: scale(1.05); }
+        .badge-icon { font-size: 2.5rem; display: block; margin-bottom: 0.3rem; }
+        .badge-name { font-size: 0.8rem; font-weight: 700; color: #555; }
+        .badge.locked { opacity: 0.4; filter: grayscale(1); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🇮🇩 Bhinneka Tunggal Ika</div>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Buka Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">🏠 Beranda</a></li>
+            <li><a href="identitas.html" class="active">🪪 Identitasku</a></li>
+            <li><a href="eksplorasi.html">🗺️ 34 Provinsi</a></li>
+        </ul>
+    </nav>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- HERO -->
+    <section class="hero-identitas fade-in">
+        <h1>🪪 Mengenal Identitasku</h1>
+        <p>Kenali dirimu, kenali temanmu — kita semua berbeda, dan itu indah! 🌈</p>
+
+        <!-- TP Strips -->
+        <div class="tp-grid">
+            <div class="tp-card"><div class="tp-num">1</div><div class="tp-text">Menyebutkan identitas fisik dan nonfisikku sendiri</div></div>
+            <div class="tp-card"><div class="tp-num">2</div><div class="tp-text">Membedakan antara identitas fisik dan nonfisik</div></div>
+            <div class="tp-card"><div class="tp-num">3</div><div class="tp-text">Menyebutkan identitas keluarga dan teman-teman</div></div>
+            <div class="tp-card"><div class="tp-num">4</div><div class="tp-text">Menghargai perbedaan yang ada pada diri sendiri dan orang lain</div></div>
+            <div class="tp-card"><div class="tp-num">5</div><div class="tp-text">Menjelaskan pentingnya persatuan dalam keragaman</div></div>
+            <div class="tp-card"><div class="tp-num">6</div><div class="tp-text">Menunjukkan sikap saling menghormati kepada teman dari berbagai latar belakang</div></div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <section class="section fade-in" style="background: white;">
+
+        <!-- TAB NAV -->
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="kartu-diri">🪞 Kartu Identitasku</button>
+            <button class="tab-btn" data-tab="fisik-sort">⚖️ Fisik vs Non-Fisik</button>
+            <button class="tab-btn" data-tab="keluarga">👨‍👩‍👧 Keluarga & Teman</button>
+            <button class="tab-btn" data-tab="menghargai">🤝 Menghargai Perbedaan</button>
+        </div>
+
+        <!-- ===== TAB 1: KARTU IDENTITASKU ===== -->
+        <div class="tab-panel active" id="tab-kartu-diri">
+            <h2 class="section-title" style="font-size:2rem; margin-bottom:0.5rem;">🪞 Buat Kartu Identitasmu!</h2>
+            <p class="section-subtitle">Isi data diri kamu, lalu lihat kartu identitasmu muncul!</p>
+
+            <div class="id-builder">
+                <!-- Form -->
+                <div class="id-form">
+                    <div class="id-form-group">
+                        <label>Namaku <span>Nonfisik</span></label>
+                        <input type="text" id="id-nama" placeholder="Contoh: Budi Santoso" maxlength="30">
+                    </div>
+                    <div class="id-form-group">
+                        <label>Jenis Kelaminku <span>Fisik</span></label>
+                        <div class="choice-grid">
+                            <button class="choice-pill" data-group="jk" data-val="Laki-laki" data-avatar="👦">👦 Laki-laki</button>
+                            <button class="choice-pill" data-group="jk" data-val="Perempuan" data-avatar="👧">👧 Perempuan</button>
+                        </div>
+                    </div>
+                    <div class="id-form-group">
+                        <label>Warna Rambutku <span>Fisik</span></label>
+                        <div class="choice-grid has-images">
+                            <button class="choice-pill img-choice" data-group="rambut" data-val="Hitam">
+                                <img src="assets/Identitas/rambut hitam.jpeg" alt="Hitam">
+                                <span>🖤 Hitam</span>
+                            </button>
+                            <button class="choice-pill img-choice" data-group="rambut" data-val="Coklat">
+                                <img src="assets/Identitas/rambut coklat.jpeg" alt="Coklat">
+                                <span>🟫 Coklat</span>
+                            </button>
+                            <button class="choice-pill img-choice" data-group="rambut" data-val="Pirang">
+                                <img src="assets/Identitas/rambut pirang.jpeg" alt="Pirang">
+                                <span>💛 Pirang</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="id-form-group">
+                        <label>Tinggi Badanku <span>Fisik</span></label>
+                        <div class="choice-grid has-images">
+                            <button class="choice-pill img-choice" data-group="tinggi" data-val="Tinggi">
+                                <img src="assets/Identitas/tinggi.jpeg" alt="Tinggi">
+                                <span>📏 Tinggi</span>
+                            </button>
+                            <button class="choice-pill img-choice" data-group="tinggi" data-val="Pendek">
+                                <img src="assets/Identitas/pendek.jpeg" alt="Pendek">
+                                <span>🔻 Pendek</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="id-form-group">
+                        <label>Hobiku <span class="nf">Nonfisik</span></label>
+                        <div class="choice-grid has-images">
+                            <button class="choice-pill nf img-choice" data-group="hobi" data-val="Membaca">
+                                <img src="assets/Identitas/hobi membaca.jpeg" alt="Membaca">
+                                <span>📚 Membaca</span>
+                            </button>
+                            <button class="choice-pill nf img-choice" data-group="hobi" data-val="Menggambar">
+                                <img src="assets/Identitas/hobi menggambar.jpeg" alt="Menggambar">
+                                <span>🎨 Menggambar</span>
+                            </button>
+                            <button class="choice-pill nf img-choice" data-group="hobi" data-val="Olahraga">
+                                <img src="assets/Identitas/hobi olahraga.jpeg" alt="Olahraga">
+                                <span>⚽ Olahraga</span>
+                            </button>
+                            <button class="choice-pill nf img-choice" data-group="hobi" data-val="Bermain Musik">
+                                <img src="assets/Identitas/hobi musik.jpeg" alt="Musik">
+                                <span>🎵 Musik</span>
+                            </button>
+                            <button class="choice-pill nf img-choice" data-group="hobi" data-val="Memasak">
+                                <img src="assets/Identitas/hobi memasak.jpeg" alt="Memasak">
+                                <span>🍳 Memasak</span>
+                            </button>
+                            <button class="choice-pill nf img-choice" data-group="hobi" data-val="Menari">
+                                <img src="assets/Identitas/hobi menari.jpeg" alt="Menari">
+                                <span>💃 Menari</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="id-form-group">
+                        <label>Sifatku <span class="nf">Nonfisik</span></label>
+                        <div class="choice-grid">
+                            <button class="choice-pill nf" data-group="sifat" data-val="Pemberani">🦁 Pemberani</button>
+                            <button class="choice-pill nf" data-group="sifat" data-val="Pemalu">🙈 Pemalu</button>
+                            <button class="choice-pill nf" data-group="sifat" data-val="Ceria">😄 Ceria</button>
+                            <button class="choice-pill nf" data-group="sifat" data-val="Pendiam">🤫 Pendiam</button>
+                            <button class="choice-pill nf" data-group="sifat" data-val="Rajin">💪 Rajin</button>
+                            <button class="choice-pill nf" data-group="sifat" data-val="Kreatif">💡 Kreatif</button>
+                        </div>
+                    </div>
+                    <div class="id-form-group">
+                        <label>Cita-citaku <span class="nf">Nonfisik</span></label>
+                        <div class="choice-grid has-images">
+                            <button class="choice-pill nf img-choice contain-img" data-group="cita" data-val="Dokter">
+                                <img src="assets/Identitas/dokter.png" alt="Dokter">
+                                <span>👨‍⚕️ Dokter</span>
+                            </button>
+                            <button class="choice-pill nf img-choice contain-img" data-group="cita" data-val="Guru">
+                                <img src="assets/Identitas/guru.png" alt="Guru">
+                                <span>👨‍🏫 Guru</span>
+                            </button>
+                            <button class="choice-pill nf img-choice contain-img" data-group="cita" data-val="Pilot">
+                                <img src="assets/Identitas/pilot.png" alt="Pilot">
+                                <span>✈️ Pilot</span>
+                            </button>
+                            <button class="choice-pill nf img-choice" data-group="cita" data-val="Seniman">
+                                <img src="assets/Identitas/seniman.jpeg" alt="Seniman">
+                                <span>🎭 Seniman</span>
+                            </button>
+                            <button class="choice-pill nf img-choice" data-group="cita" data-val="Ilmuwan">
+                                <img src="assets/Identitas/ilmuwan.jpeg" alt="Ilmuwan">
+                                <span>🔬 Ilmuwan</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Card -->
+                <div class="id-preview" id="id-preview">
+                    <span id="preview-avatar" class="id-avatar">🧒</span>
+                    <h3 id="preview-nama">Namamu</h3>
+                    <p style="color:#888; font-size:0.9rem; margin-bottom:1rem;">Kartu Identitas Diri</p>
+                    <div style="text-align:left; background:#f8f8f8; border-radius:12px; padding:1rem; margin-bottom:1rem;">
+                        <p style="font-size:0.8rem; font-weight:700; color:#aaa; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:1px;">🔵 Identitas Fisik</p>
+                        <div id="preview-fisik" style="display:flex; flex-wrap:wrap; gap:0.3rem;"></div>
+                    </div>
+                    <div style="text-align:left; background:#f8f8f8; border-radius:12px; padding:1rem;">
+                        <p style="font-size:0.8rem; font-weight:700; color:#aaa; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:1px;">🔴 Identitas Non-Fisik</p>
+                        <div id="preview-nonfisik" style="display:flex; flex-wrap:wrap; gap:0.3rem;"></div>
+                    </div>
+                    <button id="save-card-btn" class="btn-primary" style="margin-top:1.5rem; width:100%;">
+                        💾 Simpan Kartu Identitasku!
+                    </button>
+                    <p id="save-msg" style="margin-top:0.8rem; color:#1a6e1a; font-weight:700; display:none;">✅ Kartu berhasil disimpan!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TAB 2: FISIK vs NONFISIK SORT ===== -->
+        <div class="tab-panel" id="tab-fisik-sort">
+            <h2 class="section-title" style="font-size:2rem; margin-bottom:0.5rem;">⚖️ Fisik atau Non-Fisik?</h2>
+            <p class="section-subtitle">Drag atau klik kartu, lalu letakkan ke kotak yang benar! 👇</p>
+
+            <div class="sort-bank" id="sort-bank">
+                <!-- Cards inserted by JS -->
+            </div>
+
+            <div class="sort-area">
+                <div class="sort-bin" id="bin-fisik">
+                    <div class="sort-bin-title">
+                        <span class="dot" style="background:var(--secondary)"></span>
+                        Identitas <span style="color:var(--secondary)">Fisik</span>
+                    </div>
+                    <p style="font-size:0.8rem; color:#aaa; margin-bottom:0.5rem;">Ciri yang dapat dilihat / diukur oleh mata</p>
+                    <div class="sort-bin-items" id="bin-fisik-items"></div>
+                </div>
+                <div class="sort-bin" id="bin-nonfisik">
+                    <div class="sort-bin-title">
+                        <span class="dot" style="background:var(--primary)"></span>
+                        Identitas <span style="color:var(--primary)">Non-Fisik</span>
+                    </div>
+                    <p style="font-size:0.8rem; color:#aaa; margin-bottom:0.5rem;">Ciri yang ada di dalam diri / perasaan</p>
+                    <div class="sort-bin-items" id="bin-nonfisik-items"></div>
+                </div>
+            </div>
+
+            <div id="sort-result" class="sort-result"></div>
+
+            <div style="text-align:center; margin-top:1.5rem;">
+                <button id="reset-sort" class="btn-secondary">🔄 Coba Lagi</button>
+            </div>
+
+            <div style="max-width:700px; margin:2.5rem auto 0; background:linear-gradient(135deg,#eafaf9,#fff); border-radius:var(--radius); padding:1.5rem; border:2px solid var(--secondary);">
+                <h3 style="font-family:var(--font-heading); color:var(--secondary); margin-bottom:0.8rem;">💡 Yang Perlu Diingat</h3>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                    <div>
+                        <p style="font-weight:700; color:var(--secondary); margin-bottom:0.4rem;">🔵 Identitas Fisik</p>
+                        <ul style="color:#555; font-size:0.9rem; padding-left:1.2rem; line-height:2;">
+                            <li>Warna rambut</li>
+                            <li>Bentuk wajah</li>
+                            <li>Tinggi / berat badan</li>
+                            <li>Warna kulit</li>
+                            <li>Jenis kelamin</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p style="font-weight:700; color:var(--primary); margin-bottom:0.4rem;">🔴 Identitas Non-Fisik</p>
+                        <ul style="color:#555; font-size:0.9rem; padding-left:1.2rem; line-height:2;">
+                            <li>Nama</li>
+                            <li>Hobi dan bakat</li>
+                            <li>Sifat / kepribadian</li>
+                            <li>Cita-cita</li>
+                            <li>Agama / kepercayaan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TAB 3: KELUARGA & TEMAN ===== -->
+        <div class="tab-panel" id="tab-keluarga">
+            <h2 class="section-title" style="font-size:2rem; margin-bottom:0.5rem;">👨‍👩‍👧 Mengenal Keluarga & Temanku</h2>
+            <p class="section-subtitle">Klik kartu teman untuk melihat identitas mereka! Kita berbeda tapi tetap berteman 🤝</p>
+
+            <div class="friend-grid" id="friend-grid">
+                <!-- Inserted by JS -->
+            </div>
+
+            <div style="margin-top:2.5rem; max-width:700px; margin-left:auto; margin-right:auto; background:linear-gradient(135deg,#fff9f0,#fff); border:2px solid var(--accent); border-radius:var(--radius); padding:1.5rem; text-align:center;">
+                <h3 style="font-family:var(--font-heading); font-size:1.5rem; color:#c07800; margin-bottom:0.8rem;">❓ Refleksi Bersamaku</h3>
+                <p style="font-weight:700; color:#555; font-size:1rem; line-height:1.8;">
+                    Apakah kamu punya teman yang berbeda suku, agama, atau hobi denganmu?<br>
+                    <strong style="color:var(--primary)">Perbedaan itu bukan hambatan — justru membuat pertemanan semakin kaya!</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- ===== TAB 4: MENGHARGAI PERBEDAAN ===== -->
+        <div class="tab-panel" id="tab-menghargai">
+            <h2 class="section-title" style="font-size:2rem; margin-bottom:0.5rem;">🤝 Menghargai Perbedaan</h2>
+            <p class="section-subtitle">Pilih sikap terbaik untuk setiap situasi! 🌟</p>
+
+            <div class="progress-dots" id="prog-dots"></div>
+            <div id="scenario-area">
+                <!-- Inserted by JS -->
+            </div>
+            <div id="final-score-box" class="final-score-box">
+                <span style="font-size:4rem;">🏆</span>
+                <h3>Selesai!</h3>
+                <div class="big-score" id="final-score-val">0/6</div>
+                <p id="final-label" style="font-weight:700; color:#555; margin-top:0.5rem;"></p>
+                <div class="badge-row" id="badge-row"></div>
+                <button class="btn-primary" id="restart-quiz" style="margin-top:1.5rem; width:100%;">🔄 Coba Lagi</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FRIEND DETAIL MODAL -->
+    <div class="friend-detail-modal" id="friend-modal">
+        <div class="friend-detail-box">
+            <button onclick="document.getElementById('friend-modal').classList.remove('active')"
+                style="float:right; background:none; border:none; font-size:1.5rem; cursor:pointer; line-height:1; color:#aaa;">✕</button>
+            <img id="modal-avatar-img" class="big-avatar-img" src="" alt="Avatar">
+            <h2 id="modal-name" style="font-family:var(--font-heading); color:var(--primary); font-size:1.8rem;"></h2>
+            <p id="modal-tagline" style="color:#888; font-size:0.9rem; margin:0.3rem 0 1rem;"></p>
+            <div class="identity-row" id="modal-tags"></div>
+            <p id="modal-pesan" style="margin-top:1.2rem; font-size:0.95rem; font-weight:700; color:#555; line-height:1.7;"></p>
+            <button class="btn-primary" style="margin-top:1.2rem; width:100%;"
+                onclick="document.getElementById('friend-modal').classList.remove('active')">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <canvas id="confetti"></canvas>
+
+    <footer>
+        <p>✨ Kita Berbeda, Kita Bersatu! 🇮🇩 ✨</p>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script src="identitas.js"></script>
+</body>
+</html>
